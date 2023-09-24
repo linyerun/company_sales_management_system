@@ -1,0 +1,33 @@
+server:
+  port: 8888
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  mail:
+    default-encoding: UTF-8
+    host: smtp.qq.com
+    username: xxxx@qq.com
+    password: xxxx
+  application:
+    name: company_sales_management_system
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    name: company_sales_management_system
+    url: jdbc:mysql://localhost:3306/company_sales_management_system?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+
+mybatis-plus:
+  type-aliases-package: com.lin.company_sales_management_system.entity # 可以使用实体类别名代替表名在xml文件里面
+  configuration:
+    map-underscore-to-camel-case: true # 开启驼峰,xml里面表对应字段直接使用驼峰就行(开了个寂寞,怎么回事)
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 配置日志
+  mapper-locations: classpath:mapper/xml/*.xml # Mapper映射文件的路径
+
+# 生成支付单给客户支付
+client:
+  pay:
+    page-base-url: http://127.0.0.1:5173/payment/
